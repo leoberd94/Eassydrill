@@ -1,0 +1,50 @@
+<nav [class.scrolled]="isScrolled">
+  <div class="nav-container">
+
+    <!-- Logo -->
+    <a routerLink="/" class="logo" (click)="closeMenu()">
+  <img src="/EasyDrill_logo_transparent.png" alt="EasyDrill Solutions" class="logo-img">
+</a>
+
+    <!-- Links escritorio -->
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/nosotros" routerLinkActive="active">About Us</a>
+      </li>
+      <li>
+        <a routerLink="/servicios" routerLinkActive="active">Services</a>
+      </li>
+      <li>
+        <a routerLink="/contacto" class="btn-contacto" routerLinkActive="active">
+          Contact Us
+        </a>
+      </li>
+    </ul>
+
+    <!-- Botón hamburguesa -->
+    <button
+      class="hamburger"
+      [class.open]="isMenuOpen"
+      (click)="toggleMenu()"
+      aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <!-- Menú móvil -->
+  <div class="mobile-menu" [class.open]="isMenuOpen">
+    <a routerLink="/nosotros" routerLinkActive="active" (click)="closeMenu()">
+      About Us
+    </a>
+    <a routerLink="/servicios" routerLinkActive="active" (click)="closeMenu()">
+      Services
+    </a>
+    <a routerLink="/contacto" routerLinkActive="active" (click)="closeMenu()" class="btn-contacto-mobile">
+      Contact Us
+    </a>
+  </div>
+
+</nav>

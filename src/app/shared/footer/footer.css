@@ -1,0 +1,231 @@
+/* ===========================
+   BASE (Desktop)
+=========================== */
+.footer {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+.footer-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- Top --- */
+.footer-top {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --- Brand --- */
+.footer-brand {}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.logo-easy {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffffff;
+  font-family: var(--font-brand);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.logo-drill {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--color-primary);
+  font-family: var(--font-brand);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.logo-sub {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+}
+
+.logo-line {
+  width: 40px;
+  height: 2px;
+  background: var(--color-primary);
+}
+
+.logo-solutions {
+  font-size: 6px;
+  color: #666;
+  letter-spacing: 3px;
+  font-family: var(--font-body);
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+.footer-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 280px;
+  font-family: var(--font-body);
+}
+
+/* --- Social --- */
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+
+.social-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 18px;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.social-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(26, 111, 212, 0.08);
+}
+
+/* --- Columnas --- */
+.footer-col {}
+
+.footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 1.2rem;
+  font-family: var(--font-body);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  font-size: 13px;
+  font-family: var(--font-body);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-links a i {
+  font-size: 15px;
+  color: var(--color-primary);
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+/* --- Bottom --- */
+.footer-bottom {
+  padding: 1.2rem 0;
+}
+
+.footer-bottom .footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: unset;
+  gap: 0;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: var(--font-body);
+}
+
+.footer-made {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ===========================
+   LAPTOP (max 1024px)
+=========================== */
+@media (max-width: 1024px) {
+  .footer-container {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-col:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ===========================
+   TABLET (max 768px)
+=========================== */
+@media (max-width: 768px) {
+  .footer-top {
+    padding: 3rem 0 2rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom .footer-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
+
+/* ===========================
+   MÓVIL (max 480px)
+=========================== */
+@media (max-width: 480px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-desc {
+    max-width: 100%;
+  }
+}

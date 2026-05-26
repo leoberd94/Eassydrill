@@ -1,0 +1,43 @@
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+  --color-primary: #0B3C5D;
+  --color-primary-dark: #072a42;
+  --color-secondary: #4F5B66;
+  --color-black: #0a0a0a;
+  --color-white: #ffffff;
+  --color-gray: rgba(255, 255, 255, 0.65);
+  --font-brand: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --max-width: 1200px;
+  --nav-height: 68px;
+}
+
+/* ===== RESET BASE ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #111111;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-brand);
+  font-weight: 700;
+}

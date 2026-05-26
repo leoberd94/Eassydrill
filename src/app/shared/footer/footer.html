@@ -1,0 +1,109 @@
+<footer class="footer">
+
+  <!-- Top -->
+  <div class="footer-top">
+    <div class="footer-container">
+
+      <!-- Logo y descripción -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-easy">EASY</span>
+          <span class="logo-drill">DRILL</span>
+          <div class="logo-sub">
+            <div class="logo-line"></div>
+            <span class="logo-solutions">SOLUTIONS</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          EasyDrill Solutions specializes in directional boring and fiber optic 
+          cable installation with a commitment to punctuality, precision, safety, 
+          and damage prevention for underground infrastructure projects.
+        </p>
+        <!-- Redes sociales -->
+        <div class="footer-social">
+          <a [href]="social.instagram"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Instagram"
+             class="social-btn">
+            <i class="ti ti-brand-instagram" aria-hidden="true"></i>
+          </a>
+          <a [href]="social.facebook"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Facebook"
+             class="social-btn">
+            <i class="ti ti-brand-facebook" aria-hidden="true"></i>
+          </a>
+          <a [href]="'mailto:' + email"
+             aria-label="Email"
+             class="social-btn">
+            <i class="ti ti-mail" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/nosotros">About Us</a></li>
+          <li><a routerLink="/servicios">Services</a></li>
+          <li><a routerLink="/contacto">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Servicios -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Services</h4>
+        <ul class="footer-links">
+          <li><a routerLink="/servicios">Directional Boring</a></li>
+          <li><a routerLink="/servicios">Fiber Optic Pulling</a></li>
+          <li><a routerLink="/servicios">Utility Installation</a></li>
+          <li><a routerLink="/servicios">Project Coordination</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Contact Us</h4>
+        <ul class="footer-links">
+          <li>
+            <a [href]="'mailto:' + email">
+              <i class="ti ti-mail" aria-hidden="true"></i>
+              {{ email }}
+            </a>
+          </li>
+          <li>
+            <a [href]="social.instagram" target="_blank" rel="noopener noreferrer">
+              <i class="ti ti-brand-instagram" aria-hidden="true"></i>
+              &#64;easydrillsolutions
+            </a>
+          </li>
+          <li>
+            <a [href]="social.facebook" target="_blank" rel="noopener noreferrer">
+              <i class="ti ti-brand-facebook" aria-hidden="true"></i>
+              EasyDrill Solutions
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom copyright -->
+  <div class="footer-bottom">
+    <div class="footer-container">
+      <p class="footer-copy">
+        &copy; {{ currentYear }} EasyDrill Solutions. All rights reserved.
+      </p>
+      <p class="footer-made">
+        Designed & developed with
+        <i class="ti ti-heart" style="color: var(--color-primary);" aria-hidden="true"></i>
+      </p>
+    </div>
+  </div>
+
+</footer>

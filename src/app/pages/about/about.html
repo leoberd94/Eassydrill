@@ -1,0 +1,19 @@
+<section class="section">
+  <div class="section-label">ABOUT OUR COMPANY</div>
+  <h2 class="section-title">WHY CHOOSE EASYDRILL?</h2>
+  <div class="title-bar"></div>
+  <p class="section-desc">
+    At EasyDrill Solutions, we provide reliable underground directional boring 
+    and fiber optic installation services with a strong focus on quality, 
+    safety, efficiency, and professionalism.
+  </p>
+  <div class="cards">
+    @for (pillar of pillars; track pillar.title) {
+      <div class="card">
+        <div class="card-icon"></div>
+        <h3>{{ pillar.title }}</h3>
+        <p>{{ pillar.desc }}</p>
+      </div>
+    }
+  </div>
+</section>

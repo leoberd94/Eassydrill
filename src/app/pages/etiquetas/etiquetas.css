@@ -1,0 +1,159 @@
+/* ===========================
+   BASE (Desktop)
+=========================== */
+.why-section {
+    background: #ffffff;
+    padding: 5rem 0;
+}
+
+.why-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- Header --- */
+.why-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.why-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0 0 0.6rem;
+    font-family: var(--font-body);
+}
+
+.why-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-text);
+    font-family: var(--font-brand);
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+}
+
+.why-line {
+    width: 48px;
+    height: 3px;
+    background: var(--color-primary);
+    margin: 0 auto 1.5rem;
+}
+
+.why-subtitle {
+    font-size: 15px;
+    color: var(--color-text-muted, #666);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-family: var(--font-body);
+}
+
+/* --- Grid --- */
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* --- Card --- */
+.why-card {
+    background: #ffffff;
+    border: 0.5px solid #e0e0e0;
+    border-top: 3px solid var(--color-primary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow:
+        -6px 0 32px rgba(11, 60, 93, 0.12),
+        0 4px 32px rgba(11, 60, 93, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.why-card:hover {
+    box-shadow:
+        -8px 0 40px rgba(11, 60, 93, 0.22),
+        0 8px 40px rgba(11, 60, 93, 0.15);
+    transform: translateY(-4px);
+}
+
+/* --- Ícono --- */
+.why-icon {
+    width: 44px;
+    height: 44px;
+    background: #e6f1fb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.why-icon i {
+    font-size: 22px;
+    color: var(--color-primary);
+}
+
+/* --- Textos --- */
+.why-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 0.5rem;
+    font-family: var(--font-body);
+}
+
+.why-card-desc {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+    font-family: var(--font-body);
+}
+
+/* ===========================
+   LAPTOP (max 1024px)
+=========================== */
+@media (max-width: 1024px) {
+    .why-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+}
+
+/* ===========================
+   TABLET (max 768px)
+=========================== */
+@media (max-width: 768px) {
+    .why-section {
+        padding: 3.5rem 0;
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-title {
+        font-size: 1.6rem;
+    }
+}
+
+/* ===========================
+   MÓVIL (max 480px)
+=========================== */
+@media (max-width: 480px) {
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-title {
+        font-size: 1.4rem;
+    }
+
+    .why-section {
+        padding: 2.5rem 0;
+    }
+}

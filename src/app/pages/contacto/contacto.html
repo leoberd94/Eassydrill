@@ -1,0 +1,101 @@
+<div class="page-header" [style.display]="showHeader ? 'flex' : 'none'">
+  <div class="header-overlay"></div>
+  <div class="header-content">
+    <h1>Contact Us</h1>
+    <p>Let's Build Your Next Project</p>
+  </div>
+</div>
+
+<section class="contact-section">
+  <div class="container">
+    
+    <div class="contact-grid">
+      <!-- Info Col -->
+      <div class="contact-info">
+        <h2>Get In Touch</h2>
+        <div class="title-line"></div>
+        <p class="intro-desc">
+          Looking for dependable directional boring and fiber optic installation services? 
+          Contact us today to discuss your project and receive a professional quote.
+        </p>
+        
+        <div class="info-items">
+          <div class="info-item">
+            <div class="icon-wrap"><i class="ti ti-phone"></i></div>
+            <div class="item-text">
+              <h4>Call Now</h4>
+              <p><a [href]="'tel:' + phone">{{ phone }}</a></p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="icon-wrap"><i class="ti ti-mail"></i></div>
+            <div class="item-text">
+              <h4>Email Us</h4>
+              <p><a [href]="'mailto:' + email">{{ email }}</a></p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="icon-wrap"><i class="ti ti-clock"></i></div>
+            <div class="item-text">
+              <h4>Working Hours</h4>
+              <p>Mon - Fri: 8:00 AM - 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Col -->
+      <div class="contact-form-col">
+        <div class="form-card">
+          <h3>Request Estimate</h3>
+          <p class="form-desc">Fill out the form below and our team will get back to you promptly.</p>
+          
+          <form (submit)="onSubmit($event)">
+            <!-- Nombre -->
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" placeholder="E.g. John Doe" required>
+            </div>
+
+            <!-- Contacto -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" placeholder="(555) 000-0000" required>
+              </div>
+            </div>
+
+            <!-- Servicio -->
+            <div class="form-group">
+              <label for="service">Interested Service *</label>
+              <select id="service" required>
+                <option value="" disabled selected>Select a service</option>
+                @for (service of services; track service) {
+                  <option [value]="service">{{ service }}</option>
+                }
+              </select>
+            </div>
+
+            <!-- Mensaje -->
+            <div class="form-group">
+              <label for="message">Project Details / Message</label>
+              <textarea id="message" rows="4" placeholder="Tell us briefly about your project..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              Send Request <i class="ti ti-send"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</section>

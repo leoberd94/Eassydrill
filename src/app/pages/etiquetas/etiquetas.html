@@ -1,0 +1,27 @@
+<section class="why-section">
+  <div class="why-container">
+    
+    <div class="why-header">
+      <span class="why-tag">Our Strengths</span>
+      <h2 class="why-title">Why Choose EasyDrill</h2>
+      <div class="why-line"></div>
+      <p class="why-subtitle">
+        We are committed to delivering high-quality work with professionalism,
+        responsibility, and a focus on customer satisfaction.
+      </p>
+    </div>
+
+    <div class="why-grid">
+      @for (reason of reasons; track $index) {
+        <div class="why-card">
+          <div class="why-icon">
+            <i class="{{ reason.icon }}"></i>
+          </div>
+          <h3 class="why-card-title">{{ reason.title }}</h3>
+          <p class="why-card-desc">{{ reason.description }}</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
