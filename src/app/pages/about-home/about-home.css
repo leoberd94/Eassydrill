@@ -1,0 +1,125 @@
+.about {
+  background: #ffffff;
+  padding: 80px 40px;
+  font-family: 'Barlow', sans-serif;
+}
+
+.about__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.about__label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #1e4d8c;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.about__title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #0d1b2a;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  letter-spacing: 1px;
+}
+
+.about__divider {
+  width: 48px;
+  height: 3px;
+  background: #1e4d8c;
+  margin: 0 auto 24px;
+  border-radius: 2px;
+}
+
+.about__intro {
+  color: #5a6a7e;
+  font-size: 1rem;
+  line-height: 1.8;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto 50px;
+}
+
+.about__card {
+  background: #f4f8ff;
+  border-left: 4px solid #1e4d8c;
+  border-radius: 0 8px 8px 0;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.about__card-icon {
+  width: 36px;
+  height: 36px;
+  background: #1e4d8c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.about__card-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0d1b2a;
+  line-height: 1.5;
+}
+
+.about__closing {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #0d1b2a;
+  border-radius: 10px;
+  padding: 30px 36px;
+}
+
+.about__closing-text {
+  font-size: 0.97rem;
+  color: #cde0f5;
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .about {
+    padding: 60px 24px;
+  }
+  .about__title {
+    font-size: 1.9rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .about {
+    padding: 40px 16px;
+  }
+  .about__title {
+    font-size: 1.5rem;
+  }
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+  .about__closing {
+    padding: 24px 20px;
+  }
+}

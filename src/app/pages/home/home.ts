@@ -5,10 +5,11 @@ import { Cleanup } from "../cleanup/cleanup";
 import { About } from "../about/about";
 import { Servicios } from "../servicios/servicios";
 import { AboutBanner } from "../nosotros/components/about-banner/about-banner";
+import { AboutHome } from "../about-home/about-home";
 
 @Component({
   selector: 'app-home',
-  imports: [Hero, Etiquetas, Cleanup, About, Servicios, AboutBanner],
+  imports: [Hero, Etiquetas, Cleanup, About, Servicios, AboutBanner, AboutHome],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

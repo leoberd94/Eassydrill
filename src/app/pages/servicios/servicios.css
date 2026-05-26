@@ -1,6 +1,46 @@
 /* ===========================
    PAGE BANNER (solo /servicios)
 =========================== */
+
+
+.about {
+  background: #ffffff;
+  padding: 80px 40px;
+  font-family: 'Barlow', sans-serif;
+}
+
+.about__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.about__label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #1e4d8c;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.about__title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #0d1b2a;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  letter-spacing: 1px;
+}
+
+.about__divider {
+  width: 48px;
+  height: 3px;
+  background: #1e4d8c;
+  margin: 0 auto 24px;
+  border-radius: 2px;
+}
+
 .services-page-header {
   position: relative;
   background: var(--color-primary-dark);
