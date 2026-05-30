@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {Router, RouterLink} from '@angular/router';
-import {Contacto} from '../contacto/contacto';
-import { reverse } from 'dns';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { Contacto } from '../contacto/contacto';
+import { ProjectWorkflow } from "./project-workflow/project-workflow";
+import { Gallery } from '../gallery/gallery';
 
 @Component({
   selector: 'app-servicios',
-  imports: [CommonModule, RouterLink, Contacto],
+  imports: [CommonModule, RouterLink, Contacto, ProjectWorkflow, NgOptimizedImage, Gallery],
   templateUrl: './servicios.html',
   styleUrl: './servicios.css',
 })
@@ -20,34 +21,36 @@ export class Servicios {
    services = [
     {
       number: '01',
-      icon: 'ti-drill',
+      icon: 'ti-bulldozer',
       title: 'Directional Boring',
       description: 'Professional underground directional drilling solutions for utilities, telecommunications, and infrastructure projects with minimal surface disruption.',
-      image: 'assets/images/service1.jpg'
+      image: '/assets/images/service1.jpg',
+      reverse:false
     },
     {
       number: '02',
       icon: 'ti-wave-sine',
       title: 'Fiber Optic Cable Pulling',
       description: 'Safe and efficient fiber optic cable installation for residential, commercial, and municipal networks.',
-      image: 'assets/images/service2.jpg',
+      image: '/assets/images/service2.jpg',
       reverse: true
     },
-    {
+    /*{
       number: '03',
       icon: 'ti-plug',
       title: 'Underground Utility Installation',
       description: 'Reliable underground pathways for communication and utility systems while protecting surrounding structures and landscapes.',
-      image: 'assets/images/service3.jpg'
+      image: '/assets/images/service3.jpg',
+      reverse:false
     },
     {
       number: '04',
       icon: 'ti-clipboard-list',
       title: 'Project Support & Coordination',
       description: 'We work closely with contractors, developers, and utility companies to ensure every project is completed on schedule and according to specifications.',
-      image: 'assets/images/service4.jpg',
+      image: '/assets/images/service4.jpg',
       reverse: true
-    },
+    },*/
    
   ];
 

@@ -1,0 +1,73 @@
+<section class="gallery-section">
+  <div class="gallery-container">
+
+    <!-- Header -->
+    <div class="gallery-header">
+      <p class="gallery-tag">Our Work</p>
+      <h2 class="gallery-title">Project Gallery</h2>
+      <div class="gallery-line"></div>
+    </div>
+
+    <!-- Filmstrip Desktop/Tablet -->
+    <div class="gallery-filmstrip">
+
+      <!-- Imagen principal -->
+      <div class="gallery-main">
+        <!-- Fondo difuminado: extiende los colores de la foto hacia los lados sin bandas oscuras -->
+        <img
+          [ngSrc]="currentImage.src"
+          [alt]="''"
+          class="gallery-main-bg-blur"
+          fill>
+        <!-- Foto completa centrada: sin recorte de cabeza ni piernas -->
+        <img
+          [ngSrc]="currentImage.src"
+          [alt]="currentImage.title"
+          class="gallery-main-img"
+          fill
+          priority>
+        <div class="gallery-overlay"></div>
+       
+        <div class="gallery-caption">
+          <p class="gallery-caption-title">{{ currentImage.title }}</p>
+          <span class="gallery-caption-sub">{{ currentImage.subtitle }}</span>
+        </div>
+      </div>
+
+      <!-- Panel vertical (Desktop) -->
+      <div class="gallery-panel">
+        <button
+          class="gallery-arrow"
+          [class.disabled]="!canGoPrev()"
+          (click)="prev()"
+          aria-label="Previous">
+          <i class="ti" [class.ti-chevron-up]="!isMobile" [class.ti-chevron-left]="isMobile" aria-hidden="true"></i>
+        </button>
+
+        <div class="gallery-thumbs">
+          @for (image of visibleThumbs; track image.src; let i = $index) {
+            <div
+              class="gallery-thumb"
+              [class.active]="isThumbActive(thumbStartIndex + i)"
+              (click)="selectImage(thumbStartIndex + i)">
+              <img [ngSrc]="image.src" [alt]="image.title" fill>
+              <div class="gallery-thumb-overlay"></div>
+            </div>
+          }
+        </div>
+
+        <button
+          class="gallery-arrow"
+          [class.disabled]="!canGoNext()"
+          (click)="next()"
+          aria-label="Next">
+          <i class="ti" [class.ti-chevron-down]="!isMobile" [class.ti-chevron-right]="isMobile" aria-hidden="true"></i>
+        </button>
+
+      
+      </div>
+
+    </div>
+
+  </div>
+</section>

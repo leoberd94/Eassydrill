@@ -10,32 +10,32 @@ import { RouterLink } from '@angular/router';
 export class Etiquetas {
    reasons = [
     {
-      icon: 'ti-clock',
+      icon: 'ti ti-clock',
       title: 'On-Time Delivery',
       description: 'We respect deadlines and understand the importance of keeping projects moving without delays.'
     },
     {
-      icon: 'ti-shield-check',
+      icon: 'ti ti-shield-check',
       title: 'Commitment & Reliability',
       description: 'Every project is handled with professionalism, responsibility, and clear communication.'
     },
     {
-      icon: 'ti-home',
+      icon: 'ti ti-home',
       title: 'Damage Prevention Focus',
       description: 'We take extra care to avoid unnecessary damage to properties, utilities, landscaping, and surrounding areas.'
     },
     {
-      icon: 'ti-tool',
+      icon: 'ti ti-tool',
       title: 'Clean & Organized Worksites',
       description: 'We believe a professional job includes leaving the site clean, organized, and ready after the work is completed.'
     },
     {
-      icon: 'ti-users',
+      icon: 'ti ti-users',
       title: 'Experienced Team',
       description: 'Our crew is trained to perform efficient and precise underground drilling and fiber optic installations.'
     },
     {
-      icon: 'ti-alert-triangle',
+      icon: 'ti ti-alert-triangle',
       title: 'Safety First',
       description: 'We follow safe operational practices to protect both the project and the environment.'
     }

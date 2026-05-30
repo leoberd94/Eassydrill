@@ -1,11 +1,11 @@
-<!-- Encabezado de la Página - Solo para /servicios -->
- <div class="about__header">
+@if (!isPage) {
+  <!-- Encabezado de la Página - Solo para Home -->
+  <div class="about__header">
     <h2 class="about__title">Our Services</h2>
     <div class="about__divider"></div>
-    <p class="about__intro">
-   
-    </p>
+    <p class="about__intro"></p>
   </div>
+}
 
 @if (isPage) {
   <div class="services-page-header">
@@ -26,7 +26,7 @@
        <div class="service-card" [class.service-card--reverse]="service.reverse">
 
   <div class="service-image-wrap">
-    <img [src]="service.image" [alt]="service.title" class="service-image" loading="lazy">
+    <img [ngSrc]="service.image" [alt]="service.title" class="service-image" fill>
     <div class="service-glow"></div>
     <div class="service-glow-inner"></div>
     <i class="ti {{ service.icon }} service-icon-overlay" aria-hidden="true"></i>
@@ -47,11 +47,16 @@
     </div>
 
   </div>
+    <app-project-workflow></app-project-workflow>
+
+    <app-gallery></app-gallery> 
+
 </section>
 
 <!-- Formulario de contacto solo en la pagina /servicios -->
 @if (isPage) {
   <div>
     <app-contacto [showHeader]="false"></app-contacto>
+  
   </div>
 }

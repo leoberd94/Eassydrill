@@ -5,13 +5,13 @@
 
 .about {
   background: #ffffff;
-  padding: 80px 40px;
+  padding: 40px 40px;
   font-family: 'Barlow', sans-serif;
 }
 
 .about__header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 0%;
 }
 
 .about__label {
@@ -43,17 +43,18 @@
 
 .services-page-header {
   position: relative;
-  background: var(--color-primary-dark);
-  padding: 160px 20px 100px;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  padding: 105px 20px 45px; /* Más compacto, considerando la navbar fixed de 68px */
   text-align: center;
   color: #fff;
   overflow: hidden;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .services-page-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(11, 60, 93, 0.95), rgba(11, 60, 93, 0.6));
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
   z-index: 1;
 }
 
@@ -65,17 +66,20 @@
 }
 
 .services-page-content h1 {
-  font-size: 3.5rem;
+  font-size: 2.2rem; /* Tamaño más refinado y proporcional, antes era 3.5rem */
   font-family: var(--font-brand);
+  font-weight: 800;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
 }
 
 .services-page-content p {
-  font-size: 1.2rem;
+  font-size: 1rem; /* Más sutil, antes era 1.2rem */
   font-family: var(--font-body);
-  color: rgba(255, 255, 255, 0.85);
-  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.5px;
+  font-weight: 400;
 }
 
 /* ===========================
@@ -281,6 +285,7 @@
    TABLET (max 768px)
 =========================== */
 @media (max-width: 768px) {
+  
   .services-section {
     padding: 3.5rem 0;
   }
@@ -304,6 +309,15 @@
 
   .services-title {
     font-size: 1.6rem;
+  }
+    .service-card--reverse {
+    flex-direction: column !important;
+  }
+
+  .service-content--reverse {
+    border-right: none !important;
+    border-left: none !important;
+    border-top: 3px solid var(--color-primary) !important;
   }
 }
 
@@ -329,6 +343,15 @@
 
   .service-desc {
     font-size: 13px;
+  }
+  .service-card--reverse {
+    flex-direction: column !important;
+  }
+
+  .service-content--reverse {
+    border-right: none !important;
+    border-left: none !important;
+    border-top: 3px solid var(--color-primary) !important;
   }
 }
 .service-card--reverse {

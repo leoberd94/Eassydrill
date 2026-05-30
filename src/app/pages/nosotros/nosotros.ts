@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { About } from '../about/about';
 import { Cleanup } from '../cleanup/cleanup';
+import { ProjectWorkflow } from "../servicios/project-workflow/project-workflow";
 
 @Component({
   selector: 'app-nosotros',
   standalone: true,
-  imports: [CommonModule, About, Cleanup],
+  imports: [CommonModule, About, Cleanup, ProjectWorkflow],
   templateUrl: './nosotros.html',
   styleUrl: './nosotros.css',
 })

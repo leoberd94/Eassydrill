@@ -11,8 +11,8 @@ import { RouterLink } from '@angular/router';
 })
 export class Hero implements OnInit, OnDestroy {
   videos = [
-    '/desktopVid_Hero1_optimizado1.mp4',
-    '/Vid_Hero2_opt.mp4' // Reemplazar con el nombre exacto de tu segundo video
+    '/VideoHero1.mp4',
+     // Reemplazar con el nombre exacto de tu segundo video
   ];
   activeIndex = 0;
   private intervalId: any;
