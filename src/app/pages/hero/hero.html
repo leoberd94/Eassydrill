@@ -1,21 +1,18 @@
 <section class="hero">
 
- <div class="hero-video-wrapper">
-  @for (video of videos; track video; let i = $index) {
-    <video
-      #videoRef
-      class="hero-video"
-      [class.active]="activeIndex === i"
-      [src]="video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto">
-    </video>
-  }
-  <div class="hero-overlay"></div>
-</div>
+  <!-- Imágenes de fondo -->
+  <div class="hero-image-wrapper">
+    @for (img of images; track img; let i = $index) {
+      <img
+        class="hero-bg-img"
+        [class.active]="activeIndex === i"
+        [ngSrc]="img"
+        [alt]="'Hero image ' + (i + 1)"
+        fill
+        [priority]="i === 0">
+    }
+    <div class="hero-overlay"></div>
+  </div>
 
   <!-- Contenido -->
   <div class="hero-content">
@@ -57,12 +54,12 @@
 
   <!-- Dots -->
   <div class="hero-dots">
-    @for (video of videos; track video; let i = $index) {
+    @for (img of images; track img; let i = $index) {
       <button
         class="dot"
         [class.active]="activeIndex === i"
-        (click)="setVideo(i)"
-        aria-label="Ver video {{ i + 1 }}">
+        (click)="setImage(i)"
+        [attr.aria-label]="'Ver imagen ' + (i + 1)">
       </button>
     }
   </div>

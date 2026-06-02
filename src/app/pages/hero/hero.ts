@@ -1,66 +1,48 @@
 import {
-  Component, OnInit, OnDestroy, Inject, PLATFORM_ID,
-  ViewChildren, QueryList, ElementRef, AfterViewInit
+  Component, OnInit, OnDestroy, Inject, PLATFORM_ID, AfterViewInit
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, NgOptimizedImage],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
-export class Hero implements OnInit, AfterViewInit, OnDestroy {
+export class Hero implements OnInit, OnDestroy {
 
-  videos = [
-    '/Video_Hero.webm',
-    // '/VideoHero2.mp4',
+  images = [
+    '/img1.webp',
+    '/img2.webp',
+    '/img3.webp',
+    '/img4.webp',
+    '/img5.webp',
+    '/img6.webp',
   ];
 
   activeIndex = 0;
   private intervalId: any;
 
-  @ViewChildren('videoRef') videoRefs!: QueryList<ElementRef<HTMLVideoElement>>;
-
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit() {
     if (!isPlatformBrowser(this.platformId)) return;
-    if (this.videos.length > 1) {
-      this.intervalId = setInterval(() => {
-        this.activeIndex = (this.activeIndex + 1) % this.videos.length;
-        this.playActive();
-      }, 7000);
-    }
-  }
-
-  ngAfterViewInit() {
-    if (!isPlatformBrowser(this.platformId)) return;
-    setTimeout(() => this.playActive(), 300);
+    this.intervalId = setInterval(() => {
+      this.activeIndex = (this.activeIndex + 1) % this.images.length;
+    }, 5000);
   }
 
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
 
-  setVideo(i: number) {
+  setImage(i: number) {
     this.activeIndex = i;
     clearInterval(this.intervalId);
-    this.playActive();
-  }
-
-  private playActive() {
-    this.videoRefs?.forEach((ref, i) => {
-      const v = ref.nativeElement;
-      if (i === this.activeIndex) {
-        v.muted = true; // obligatorio para autoplay
-        v.play().catch(e => console.warn('No autoplay:', e));
-      } else {
-        v.pause();
-        v.currentTime = 0;
-      }
-    });
+    this.intervalId = setInterval(() => {
+      this.activeIndex = (this.activeIndex + 1) % this.images.length;
+    }, 5000);
   }
 }

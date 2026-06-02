@@ -11,33 +11,28 @@
     overflow: hidden;
 }
 
-/* --- Videos --- */
-.hero-video-wrapper {
+/* --- Imágenes --- */
+.hero-image-wrapper {
     position: absolute;
     inset: 0;
     z-index: 0;
 }
 
-.hero-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;        /* Deja que el video mantenga su aspecto */
-  height: auto;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease;
+.hero-bg-img {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease;
 }
 
-.hero-video.active {
+.hero-bg-img.active {
     opacity: 1;
 }
 
 .hero-overlay {
-     position: absolute;
+    position: absolute;
     inset: 0;
     background: linear-gradient(to left,
         rgba(0, 0, 0, 0.20) 0%,
@@ -61,16 +56,16 @@
 
 .hero-tag {
     display: inline-block;
-    color: #1a8fff;                        /* ⬅️ azul brillante solo en el hero */
+    color: #1a8fff;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
     font-family: var(--font-body);
     margin-bottom: 1.2rem;
-    border-left: 3px solid #1a8fff;        /* ⬅️ mismo azul brillante */
+    border-left: 3px solid #1a8fff;
     padding-left: 12px;
-    text-shadow: 
+    text-shadow:
         0 0 12px rgba(0, 0, 0, 1),
         0 0 24px rgba(0, 0, 0, 1),
         0 2px 4px rgba(0, 0, 0, 1);
@@ -85,41 +80,41 @@
     line-height: 1.1;
     margin-bottom: 1rem;
     max-width: 480px;
-   text-shadow: 
-        0 0 12px rgba(0,0,0,1),
-        0 0 24px rgba(0,0,0,1),
-        0 2px 4px rgba(0,0,0,1);
+    text-shadow:
+        0 0 12px rgba(0, 0, 0, 1),
+        0 0 24px rgba(0, 0, 0, 1),
+        0 2px 4px rgba(0, 0, 0, 1);
 }
 
 .hero-title span {
-     color: #1a8fff;       /* el span que tiene "& Fiber Optic Solutions" */
-    text-shadow: 
-        0 0 12px rgba(0,0,0,1),
-        0 0 24px rgba(0,0,0,1);
+    color: #1a8fff;
+    text-shadow:
+        0 0 12px rgba(0, 0, 0, 1),
+        0 0 24px rgba(0, 0, 0, 1);
 }
 
 .hero-subtitle {
     font-size: 13px;
-    color: #1a8fff; 
+    color: #1a8fff;
     max-width: 420px;
     line-height: 1.7;
     margin-bottom: 0.6rem;
     font-family: var(--font-body);
-    text-shadow: 
-        0 0 10px rgba(0,0,0,1),
-        0 0 20px rgba(0,0,0,1);
+    text-shadow:
+        0 0 10px rgba(0, 0, 0, 1),
+        0 0 20px rgba(0, 0, 0, 1);
 }
 
 .hero-description {
     font-size: 11px;
-   color: #c8e0f0; 
+    color: #c8e0f0;
     max-width: 420px;
     line-height: 1.8;
     margin-bottom: 1.5rem;
     font-family: var(--font-body);
-    text-shadow: 
-        0 0 10px rgba(0,0,0,1),
-        0 0 20px rgba(0,0,0,1);
+    text-shadow:
+        0 0 10px rgba(0, 0, 0, 1),
+        0 0 20px rgba(0, 0, 0, 1);
 }
 
 /* --- Botones --- */
@@ -181,7 +176,6 @@
     align-items: center;
     gap: 2rem;
     z-index: 2;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .stat {
@@ -195,22 +189,21 @@
     color: #1a8fff;
     font-family: var(--font-brand);
     line-height: 1;
-    text-shadow: 
-        0 0 12px rgba(0,0,0,1),
-        0 0 24px rgba(0,0,0,1);
-
+    text-shadow:
+        0 0 12px rgba(0, 0, 0, 1),
+        0 0 24px rgba(0, 0, 0, 1);
 }
 
 .stat-label {
     font-size: 11px;
-     color: #c8e0f0;
+    color: #c8e0f0;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-family: var(--font-body);
     margin-top: 4px;
-    text-shadow: 
-        0 0 8px rgba(0,0,0,1),
-        0 0 16px rgba(0,0,0,1);
+    text-shadow:
+        0 0 8px rgba(0, 0, 0, 1),
+        0 0 16px rgba(0, 0, 0, 1);
 }
 
 .stat-divider {
@@ -250,6 +243,11 @@
    LAPTOP (max 1024px)
 =========================== */
 @media (max-width: 1024px) {
+    .hero-content {
+        padding: 0 2.5rem 0 40%;
+        padding-top: var(--nav-height);
+    }
+
     .hero-title {
         font-size: 1.9rem;
     }
@@ -260,7 +258,7 @@
 =========================== */
 @media (max-width: 768px) {
     .hero-content {
-        padding: 0 2rem 0 30%;
+        padding: 0 2rem 0 25%;
         padding-top: var(--nav-height);
         text-align: right;
         align-items: flex-end;
@@ -274,6 +272,7 @@
     .hero-subtitle,
     .hero-description {
         max-width: 100%;
+        font-size: 12px;
     }
 
     .hero-buttons {
@@ -284,10 +283,19 @@
         justify-content: center;
         gap: 1.2rem;
         bottom: 60px;
+        padding: 0 1.5rem;
     }
 
     .stat-number {
         font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .stat-divider {
+        height: 30px;
     }
 }
 
@@ -295,30 +303,57 @@
    MÓVIL (max 480px)
 =========================== */
 @media (max-width: 480px) {
+    .hero {
+        min-height: 500px;
+    }
+
     .hero-content {
-        padding: 0 1.5rem 0 10%;
+        padding: 0 1.2rem 0 8%;
+        padding-top: var(--nav-height);
+        text-align: right;
+        align-items: flex-end;
+    }
+
+    .hero-tag {
+        font-size: 9px;
+        letter-spacing: 2px;
+        margin-bottom: 0.8rem;
     }
 
     .hero-title {
         font-size: 1.3rem;
+        margin-bottom: 0.8rem;
     }
 
     .hero-subtitle {
-        font-size: 13px;
+        font-size: 11px;
+        margin-bottom: 0.4rem;
     }
 
     .hero-description {
         display: block;
         font-size: 10px;
         color: #c8e0f0;
-        text-shadow: 
-            0 0 10px rgba(0,0,0,1),
-            0 0 20px rgba(0,0,0,1);
+        margin-bottom: 1rem;
+        text-shadow:
+            0 0 10px rgba(0, 0, 0, 1),
+            0 0 20px rgba(0, 0, 0, 1);
+    }
+
+    .hero-buttons {
+        justify-content: flex-end;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 18px;
+        font-size: 11px;
     }
 
     .hero-stats {
-        gap: 0.8rem;
-        bottom: 55px;
+        gap: 0.6rem;
+        bottom: 50px;
+        padding: 0 1rem;
     }
 
     .stat-number {
@@ -326,12 +361,55 @@
     }
 
     .stat-label {
-        font-size: 9px;
+        font-size: 8px;
+        letter-spacing: 0.5px;
     }
 
-    .btn-primary,
-    .btn-secondary {
-        padding: 11px 20px;
-        font-size: 12px;
+    .stat-divider {
+        height: 25px;
+    }
+
+    .hero-dots {
+        bottom: 18px;
+    }
+}
+
+/* ===========================
+   MÓVIL PEQUEÑO (max 360px)
+=========================== */
+@media (max-width: 360px) {
+    .hero-content {
+        padding: 0 1rem 0 5%;
+        padding-top: var(--nav-height);
+    }
+
+    .hero-title {
+        font-size: 1.1rem;
+    }
+
+    .hero-tag {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 10px;
+    }
+
+    .hero-description {
+        display: none;
+    }
+
+    .stat-number {
+        font-size: 1rem;
+    }
+
+    .stat-label {
+        font-size: 7px;
+    }
+
+    .btn-primary {
+        padding: 9px 14px;
+        font-size: 10px;
     }
 }
