@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
 export class Hero implements OnInit, AfterViewInit, OnDestroy {
 
   videos = [
-    '/Video_hero2.mp4',
+    '/Video_Hero.webm',
     // '/VideoHero2.mp4',
   ];
 
