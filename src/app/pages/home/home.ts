@@ -6,11 +6,12 @@ import { About } from "../about/about";
 import { Servicios } from "../servicios/servicios";
 import { AboutBanner } from "../nosotros/components/about-banner/about-banner";
 import { AboutHome } from "../about-home/about-home";
+import { ProjectWorkflow } from '../project-workflow/project-workflow';
 
 
 @Component({
   selector: 'app-home',
-  imports: [Hero, Etiquetas, Cleanup, About, Servicios, AboutBanner, AboutHome],
+  imports: [Hero, Etiquetas, Cleanup, About, Servicios, AboutBanner, AboutHome,ProjectWorkflow],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

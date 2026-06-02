@@ -1,0 +1,143 @@
+<div class="dashboard-wrap">
+
+  <!-- Header -->
+  <header class="dash-header">
+    <div class="dash-header-left">
+      <div class="dash-logo">
+        <i class="ti ti-drill" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h1>EasyDrill Admin</h1>
+        <p>{{ adminEmail }}</p>
+      </div>
+    </div>
+    <button class="btn-logout" (click)="logout()">
+      <i class="ti ti-logout" aria-hidden="true"></i>
+      <span>Logout</span>
+    </button>
+  </header>
+
+  <main class="dash-main">
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon pending">
+          <i class="ti ti-clock" aria-hidden="true"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Pending</span>
+          <span class="stat-number">{{ pendingCount }}</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon read">
+          <i class="ti ti-eye" aria-hidden="true"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Read</span>
+          <span class="stat-number">{{ readCount }}</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon replied">
+          <i class="ti ti-check" aria-hidden="true"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Replied</span>
+          <span class="stat-number">{{ repliedCount }}</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon total">
+          <i class="ti ti-mail" aria-hidden="true"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Total</span>
+          <span class="stat-number">{{ messages.length }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="messages-section">
+      <div class="section-header">
+        <h2>Contact Messages</h2>
+        <button class="btn-refresh" (click)="loadMessages()">
+          <i class="ti ti-refresh" aria-hidden="true"></i>
+          Refresh
+        </button>
+      </div>
+
+      <!-- Loading -->
+      @if (loading) {
+        <div class="loading-state">
+          <i class="ti ti-loader-2" aria-hidden="true"></i>
+          <p>Loading messages...</p>
+        </div>
+      }
+
+      <!-- Empty -->
+      @if (!loading && messages.length === 0) {
+        <div class="empty-state">
+          <i class="ti ti-inbox" aria-hidden="true"></i>
+          <p>No messages yet</p>
+        </div>
+      }
+
+      <!-- Lista -->
+      @if (!loading && messages.length > 0) {
+        <div class="messages-list">
+          @for (msg of messages; track msg.id) {
+            <div class="message-card">
+
+              <div class="message-top">
+                <div class="message-info">
+                  <div class="msg-avatar">
+                    {{ msg.fullName.charAt(0).toUpperCase() }}
+                  </div>
+                  <div>
+                    <h3>{{ msg.fullName }}</h3>
+                    <p class="msg-service">{{ msg.service }}</p>
+                  </div>
+                </div>
+                <span class="badge" [ngClass]="getStatusClass(msg.status)">
+                  {{ msg.status }}
+                </span>
+              </div>
+
+              <div class="message-body">
+                <div class="msg-contact">
+                  <span><i class="ti ti-mail" aria-hidden="true"></i> {{ msg.email }}</span>
+                  <span><i class="ti ti-phone" aria-hidden="true"></i> {{ msg.phone }}</span>
+                  <span><i class="ti ti-calendar" aria-hidden="true"></i> {{ msg.createdAt | date:'MMM d, y' }}</span>
+                </div>
+                @if (msg.message) {
+                  <p class="msg-text">{{ msg.message }}</p>
+                }
+              </div>
+
+              <div class="message-actions">
+                @if (msg.status === 'PENDING') {
+                  <button class="btn-action read" (click)="updateStatus(msg.id, 'READ')">
+                    <i class="ti ti-eye" aria-hidden="true"></i> Mark as Read
+                  </button>
+                }
+                @if (msg.status === 'READ') {
+                  <button class="btn-action replied" (click)="updateStatus(msg.id, 'REPLIED')">
+                    <i class="ti ti-check" aria-hidden="true"></i> Mark as Replied
+                  </button>
+                }
+                <button class="btn-action delete" (click)="deleteMessage(msg.id)">
+                  <i class="ti ti-trash" aria-hidden="true"></i> Delete
+                </button>
+              </div>
+
+            </div>
+          }
+        </div>
+      }
+
+    </div>
+  </main>
+</div>

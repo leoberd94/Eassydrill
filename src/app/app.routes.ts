@@ -39,6 +39,11 @@ export const routes: Routes = [
   {path:'gallery',
     loadComponent:()=>
       import('./pages/gallery/gallery').then(m=> m.Gallery)
-  }
+  },
+   {
+    path: 'login',
+    loadComponent: () =>
+      import('./login/login').then(m => m.Login)
+  },
 
 ];

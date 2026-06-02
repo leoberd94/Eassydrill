@@ -1,48 +1,40 @@
 <section class="hero">
 
-  <!-- Video de fondo (Carrusel) -->
-  <div class="hero-video-wrapper">
-    @for (video of videos; track video; let i = $index) {
-      <video
-        class="hero-video"
-        [class.active]="activeIndex === i"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto">
-        <source [src]="video" type="video/mp4">
-      </video>
-    }
-    <div class="hero-overlay"></div>
-  </div>
+ <div class="hero-video-wrapper">
+  @for (video of videos; track video; let i = $index) {
+    <video
+      #videoRef
+      class="hero-video"
+      [class.active]="activeIndex === i"
+      [src]="video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto">
+    </video>
+  }
+  <div class="hero-overlay"></div>
+</div>
 
   <!-- Contenido -->
   <div class="hero-content">
-
     <div class="hero-tag">Professional Underground Infrastructure Contractor</div>
-
     <h1 class="hero-title">
       Specialized Directional Drilling
       <span>& Fiber Optic Solutions</span>
     </h1>
-
     <p class="hero-subtitle">
       Directional boring and fiber optic cable installation delivered
       with professionalism, punctuality, and commitment to every project.
     </p>
-
     <p class="hero-description">
       We specialize in underground directional drilling and fiber optic
       cable pulling for commercial, residential, and infrastructure projects.
-      Our team is committed to on-time delivery, safe operations, and
-      minimizing damage to surrounding properties and utilities.
     </p>
-
     <div class="hero-buttons">
       <a routerLink="/servicios" class="btn-primary">Start Your Project</a>
     </div>
-
   </div>
 
   <!-- Stats -->
@@ -63,14 +55,14 @@
     </div>
   </div>
 
-  <!-- Puntos del Carrusel -->
+  <!-- Dots -->
   <div class="hero-dots">
     @for (video of videos; track video; let i = $index) {
-      <button 
-        class="dot" 
+      <button
+        class="dot"
         [class.active]="activeIndex === i"
         (click)="setVideo(i)"
-        aria-label="Ver video">
+        aria-label="Ver video {{ i + 1 }}">
       </button>
     }
   </div>

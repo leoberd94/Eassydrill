@@ -1,0 +1,33 @@
+<section class="workflow-section">
+  <div class="workflow-container">
+
+    <!-- Header -->
+    <div class="workflow-header">
+      <p class="workflow-tag">How We Work</p>
+      <h2 class="workflow-title">Project Workflow</h2>
+      <div class="workflow-line"></div>
+    </div>
+
+    <!-- Steps -->
+    <div class="workflow-list">
+      @for (step of steps; track step.number) {
+        <div class="workflow-card">
+
+          <!-- Ícono + número -->
+          <div class="workflow-icon-wrap">
+            <i class="ti {{ step.icon }}" aria-hidden="true"></i>
+            <span class="workflow-number">{{ step.number }}</span>
+          </div>
+
+          <!-- Contenido -->
+          <div class="workflow-content">
+            <h3 class="workflow-step-title">{{ step.title }}</h3>
+            <p class="workflow-step-desc">{{ step.description }}</p>
+          </div>
+
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

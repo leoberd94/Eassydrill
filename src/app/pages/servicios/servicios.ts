@@ -2,13 +2,13 @@ import { Component, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { Contacto } from '../contacto/contacto';
-import { ProjectWorkflow } from "./project-workflow/project-workflow";
+
 import { Gallery } from '../gallery/gallery';
 import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-servicios',
-  imports: [CommonModule, RouterLink, Contacto, ProjectWorkflow, NgOptimizedImage, Gallery],
+  imports: [CommonModule, RouterLink, Contacto, NgOptimizedImage, Gallery],
   templateUrl: './servicios.html',
   styleUrl: './servicios.css',
 })
@@ -36,7 +36,7 @@ export class Servicios {
       icon: 'ti-bulldozer',
       title: 'Directional Boring',
       description: 'Professional underground directional drilling solutions for utilities, telecommunications, and infrastructure projects with minimal surface disruption.',
-      image: '/assets/images/service1.jpg',
+      image: '/img1.jpeg',
       reverse: false
     },
     {
@@ -44,7 +44,7 @@ export class Servicios {
       icon: 'ti-wave-sine',
       title: 'Fiber Optic Cable Pulling',
       description: 'Safe and efficient fiber optic cable installation for residential, commercial, and municipal networks.',
-      image: '/assets/images/service2.jpg',
+      image: '/img2.jpeg',
       reverse: true
     }
 

@@ -9,8 +9,10 @@
   </p>
   <div class="cards">
     @for (pillar of pillars; track pillar.title) {
-      <div class="card">
-        <div class="card-icon"></div>
+      <div class="card">                          <!-- ✅ card, no pillar -->
+        <div class="pillar-icon">
+          <i [class]="pillar.icon" aria-hidden="true"></i>
+        </div>
         <h3>{{ pillar.title }}</h3>
         <p>{{ pillar.desc }}</p>
       </div>

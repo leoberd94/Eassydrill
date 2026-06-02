@@ -8,40 +8,34 @@
       <div class="gallery-line"></div>
     </div>
 
-    <!-- Filmstrip Desktop/Tablet -->
+    <!-- Filmstrip -->
     <div class="gallery-filmstrip">
 
-      <!-- Imagen principal -->
-      <div class="gallery-main">
-        <!-- Fondo difuminado: extiende los colores de la foto hacia los lados sin bandas oscuras -->
-        <img
-          [ngSrc]="currentImage.src"
-          [alt]="''"
-          class="gallery-main-bg-blur"
-          fill>
-        <!-- Foto completa centrada: sin recorte de cabeza ni piernas -->
-        <img
-          [ngSrc]="currentImage.src"
-          [alt]="currentImage.title"
-          class="gallery-main-img"
-          fill
-          priority>
+      <!-- Imagen principal — click abre lightbox -->
+      <div class="gallery-main" (click)="openLightbox()" style="cursor: zoom-in;">
+        <img [ngSrc]="currentImage.src" alt="" class="gallery-main-bg-blur" fill>
+        <img [ngSrc]="currentImage.src" [alt]="currentImage.title" class="gallery-main-img" fill priority>
         <div class="gallery-overlay"></div>
-       
+        <div class="gallery-badge">
+          <i class="ti ti-zoom-in" aria-hidden="true"></i>
+        </div>
         <div class="gallery-caption">
           <p class="gallery-caption-title">{{ currentImage.title }}</p>
           <span class="gallery-caption-sub">{{ currentImage.subtitle }}</span>
         </div>
       </div>
 
-      <!-- Panel vertical (Desktop) -->
+      <!-- Panel miniaturas -->
       <div class="gallery-panel">
         <button
           class="gallery-arrow"
           [class.disabled]="!canGoPrev()"
           (click)="prev()"
           aria-label="Previous">
-          <i class="ti" [class.ti-chevron-up]="!isMobile" [class.ti-chevron-left]="isMobile" aria-hidden="true"></i>
+          <i class="ti"
+            [class.ti-chevron-up]="!isMobile"
+            [class.ti-chevron-left]="isMobile"
+            aria-hidden="true"></i>
         </button>
 
         <div class="gallery-thumbs">
@@ -61,13 +55,47 @@
           [class.disabled]="!canGoNext()"
           (click)="next()"
           aria-label="Next">
-          <i class="ti" [class.ti-chevron-down]="!isMobile" [class.ti-chevron-right]="isMobile" aria-hidden="true"></i>
+          <i class="ti"
+            [class.ti-chevron-down]="!isMobile"
+            [class.ti-chevron-right]="isMobile"
+            aria-hidden="true"></i>
         </button>
-
-      
       </div>
 
     </div>
-
   </div>
+
+  <!-- ─── LIGHTBOX ─────────────────────────────────────────────── -->
+  @if (lightboxOpen) {
+    <div class="lightbox-backdrop" (click)="closeLightbox()">
+
+      <!-- Cerrar -->
+      <button class="lightbox-close" (click)="closeLightbox()" aria-label="Cerrar">
+        <i class="ti ti-x"></i>
+      </button>
+
+      <!-- Flecha izquierda -->
+      <button class="lightbox-arrow lightbox-prev" (click)="prevLightbox($event)" aria-label="Anterior">
+        <i class="ti ti-chevron-left"></i>
+      </button>
+
+      <!-- Imagen -->
+      <div class="lightbox-img-wrapper" (click)="$event.stopPropagation()">
+        <img [ngSrc]="currentImage.src" [alt]="currentImage.title" fill style="object-fit: contain;">
+        @if (currentImage.title) {
+          <p class="lightbox-caption">{{ currentImage.title }}</p>
+        }
+      </div>
+
+      <!-- Flecha derecha -->
+      <button class="lightbox-arrow lightbox-next" (click)="nextLightbox($event)" aria-label="Siguiente">
+        <i class="ti ti-chevron-right"></i>
+      </button>
+
+      <!-- Contador -->
+      <span class="lightbox-counter">{{ counter }}</span>
+
+    </div>
+  }
+
 </section>

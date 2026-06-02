@@ -1,0 +1,255 @@
+.login-wrap {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b3c5d 0%, #0a1a2e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.login-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Brand --- */
+.login-brand {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.brand-icon {
+  width: 64px;
+  height: 64px;
+  background: #0b3c5d;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.brand-icon i {
+  font-size: 32px;
+  color: #4a9eff;
+}
+
+.login-brand h1 {
+  font-size: 22px;
+  font-weight: 900;
+  color: #0b3c5d;
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.login-brand p {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8a9bb0;
+  margin: 0;
+}
+
+/* --- Form --- */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #0b3c5d;
+  margin-bottom: 0.4rem;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrap i {
+  position: absolute;
+  left: 14px;
+  font-size: 18px;
+  color: #8a9bb0;
+  pointer-events: none;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  border: 1.5px solid rgba(11, 60, 93, 0.2);
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0b3c5d;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-wrap input:focus {
+  border-color: #0b3c5d;
+}
+
+.input-wrap input::placeholder {
+  color: #b5c4d0;
+}
+
+/* --- Error --- */
+.error-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff0f0;
+  border: 1px solid #ffcccc;
+  border-left: 3px solid #e53e3e;
+  border-radius: 0 8px 8px 0;
+  padding: 0.75rem 1rem;
+  font-size: 13px;
+  color: #c53030;
+  margin-bottom: 1.25rem;
+}
+
+.error-msg i {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* --- Button --- */
+.btn-login {
+  width: 100%;
+  padding: 0.85rem;
+  background: #0b3c5d;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-login:hover:not(:disabled) {
+  background: #185FA5;
+  transform: translateY(-1px);
+}
+
+.btn-login:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-login i {
+  font-size: 18px;
+}
+
+/* ===========================
+   TABLET (max 768px)
+=========================== */
+@media (max-width: 768px) {
+  .login-wrap {
+    padding: 1.25rem;
+    align-items: center;
+  }
+
+  .login-card {
+    padding: 2rem;
+    max-width: 100%;
+  }
+
+  .brand-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .brand-icon i {
+    font-size: 28px;
+  }
+
+  .login-brand h1 {
+    font-size: 20px;
+  }
+}
+
+/* ===========================
+   MÓVIL (max 480px)
+=========================== */
+@media (max-width: 480px) {
+  .login-wrap {
+    padding: 1rem;
+    align-items: flex-start;
+    padding-top: 3rem;
+  }
+
+  .login-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: 12px;
+  }
+
+  .brand-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+  }
+
+  .brand-icon i {
+    font-size: 24px;
+  }
+
+  .login-brand h1 {
+    font-size: 18px;
+  }
+
+  .login-brand {
+    margin-bottom: 1.5rem;
+  }
+
+  .input-wrap input {
+    font-size: 16px; /* evita zoom en iOS */
+    padding: 0.8rem 1rem 0.8rem 2.75rem;
+  }
+
+  .btn-login {
+    padding: 1rem;
+    font-size: 13px;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+}
+
+/* ===========================
+   MÓVIL PEQUEÑO (max 360px)
+=========================== */
+@media (max-width: 360px) {
+  .login-wrap {
+    padding: 0.75rem;
+    padding-top: 2rem;
+  }
+
+  .login-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-brand h1 {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+} 

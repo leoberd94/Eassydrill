@@ -1,4 +1,7 @@
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component, OnInit, OnDestroy, Inject, PLATFORM_ID,
+  ViewChildren, QueryList, ElementRef, AfterViewInit
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -9,38 +12,55 @@ import { RouterLink } from '@angular/router';
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
-export class Hero implements OnInit, OnDestroy {
+export class Hero implements OnInit, AfterViewInit, OnDestroy {
+
   videos = [
-    '/VideoHero1.mp4',
-     // Reemplazar con el nombre exacto de tu segundo video
+    '/Video_hero2.mp4',
+    // '/VideoHero2.mp4',
   ];
+
   activeIndex = 0;
   private intervalId: any;
+
+  @ViewChildren('videoRef') videoRefs!: QueryList<ElementRef<HTMLVideoElement>>;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
+    if (!isPlatformBrowser(this.platformId)) return;
+    if (this.videos.length > 1) {
       this.intervalId = setInterval(() => {
         this.activeIndex = (this.activeIndex + 1) % this.videos.length;
-      }, 7000); // Cambia de video cada 7 segundos
-    }
-  }
-
-  setVideo(index: number) {
-    this.activeIndex = index;
-    // Resetear el intervalo si el usuario hace clic manualmente
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = setInterval(() => {
-         this.activeIndex = (this.activeIndex + 1) % this.videos.length;
+        this.playActive();
       }, 7000);
     }
   }
 
+  ngAfterViewInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    setTimeout(() => this.playActive(), 300);
+  }
+
   ngOnDestroy() {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    clearInterval(this.intervalId);
+  }
+
+  setVideo(i: number) {
+    this.activeIndex = i;
+    clearInterval(this.intervalId);
+    this.playActive();
+  }
+
+  private playActive() {
+    this.videoRefs?.forEach((ref, i) => {
+      const v = ref.nativeElement;
+      if (i === this.activeIndex) {
+        v.muted = true; // obligatorio para autoplay
+        v.play().catch(e => console.warn('No autoplay:', e));
+      } else {
+        v.pause();
+        v.currentTime = 0;
+      }
+    });
   }
 }

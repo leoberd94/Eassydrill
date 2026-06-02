@@ -1,6 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -10,47 +9,45 @@ import { RouterLink } from '@angular/router';
 })
 export class Gallery implements OnInit, OnDestroy {
 
-
   currentIndex = 0;
   thumbStartIndex = 0;
   thumbsVisible = 3;
   isMobile = false;
+  lightboxOpen = false;
 
   images = [
-    { src: '/imgservicios.webp', title: '', subtitle: '' },
+    { src: '/imgservicios.webp',  title: '', subtitle: '' },
     { src: '/imgservicios2.webp', title: '', subtitle: '' },
     { src: '/imgservicios3.webp', title: '', subtitle: '' },
     { src: '/imgservicios4.webp', title: '', subtitle: '' },
     { src: '/imgservicios5.webp', title: '', subtitle: '' },
-    
   ];
 
-  ngOnInit() {
-    this.checkScreen();
-  }
-
-  ngOnDestroy() {}
+  ngOnInit() { this.checkScreen(); }
+  ngOnDestroy() { document.body.style.overflow = ''; }
 
   @HostListener('window:resize', [])
   checkScreen() {
     this.isMobile = window.innerWidth <= 768;
-    this.thumbsVisible = this.isMobile ? 3 : 3;
+    this.thumbsVisible = 3;
   }
 
+  // ─── Teclado ──────────────────────────────────────────────────────────────
+  @HostListener('document:keydown', ['$event'])
+  onKeydown(event: KeyboardEvent) {
+    if (!this.lightboxOpen) return;
+    if (event.key === 'Escape')      this.closeLightbox();
+    if (event.key === 'ArrowLeft')   this.prevLightbox(event as any);
+    if (event.key === 'ArrowRight')  this.nextLightbox(event as any);
+  }
+
+  // ─── Galería ──────────────────────────────────────────────────────────────
   get visibleThumbs() {
-    return this.images.slice(
-      this.thumbStartIndex,
-      this.thumbStartIndex + this.thumbsVisible
-    );
+    return this.images.slice(this.thumbStartIndex, this.thumbStartIndex + this.thumbsVisible);
   }
 
-  get currentImage() {
-    return this.images[this.currentIndex];
-  }
-
-  get counter() {
-    return `${this.currentIndex + 1} / ${this.images.length}`;
-  }
+  get currentImage() { return this.images[this.currentIndex]; }
+  get counter() { return `${this.currentIndex + 1} / ${this.images.length}`; }
 
   selectImage(index: number) {
     this.currentIndex = index;
@@ -79,16 +76,30 @@ export class Gallery implements OnInit, OnDestroy {
     }
   }
 
-  canGoPrev(): boolean {
-    return this.thumbStartIndex > 0;
+  canGoPrev(): boolean { return this.thumbStartIndex > 0; }
+  canGoNext(): boolean { return this.thumbStartIndex + this.thumbsVisible < this.images.length; }
+  isThumbActive(i: number): boolean { return i === this.currentIndex; }
+
+  // ─── Lightbox ─────────────────────────────────────────────────────────────
+  openLightbox() {
+    this.lightboxOpen = true;
+    document.body.style.overflow = 'hidden';
   }
 
-  canGoNext(): boolean {
-    return this.thumbStartIndex + this.thumbsVisible < this.images.length;
+  closeLightbox() {
+    this.lightboxOpen = false;
+    document.body.style.overflow = '';
   }
 
-  isThumbActive(globalIndex: number): boolean {
-    return globalIndex === this.currentIndex;
+  prevLightbox(event: Event) {
+    event.stopPropagation();
+    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+    this.adjustThumbWindow();
   }
 
+  nextLightbox(event: Event) {
+    event.stopPropagation();
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    this.adjustThumbWindow();
+  }
 }
