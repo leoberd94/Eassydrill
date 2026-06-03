@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Component, OnDestroy, Inject, PLATFORM_ID, AfterViewInit, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-project-workflow',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './project-workflow.html',
   styleUrl: './project-workflow.css',
 })
-export class ProjectWorkflow {
+export class ProjectWorkflow implements AfterViewInit, OnDestroy {
+
+  @ViewChildren('cardRef') cardRefs!: QueryList<ElementRef>;
+  private observer!: IntersectionObserver;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   steps = [
     {
       number: '01',
@@ -26,7 +31,7 @@ export class ProjectWorkflow {
       number: '03',
       icon: 'ti-map-pin',
       title: 'Utility Locate Coordination',
-      description: 'We request utility locates and tickets to identify existing underground utilities before construction begins, ensuring a safe work environment.'
+      description: 'We request utility locates and tickets to identify existing underground utilities before construction begins.'
     },
     {
       number: '04',
@@ -48,4 +53,32 @@ export class ProjectWorkflow {
     }
   ];
 
+ ngAfterViewInit() {
+  if (!isPlatformBrowser(this.platformId)) return;
+
+  setTimeout(() => {
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const index = parseInt(el.dataset['index'] || '0', 10);
+          setTimeout(() => {
+            el.classList.add('visible');
+          }, index * 150);
+          this.observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px' });
+
+    this.cardRefs.forEach((ref, i) => {
+      const el = ref.nativeElement as HTMLElement;
+      el.dataset['index'] = String(i);
+      this.observer.observe(el);
+    });
+  }, 100);
+}
+
+ngOnDestroy() {
+  this.observer?.disconnect();
+}
 }
