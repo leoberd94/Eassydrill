@@ -19,21 +19,21 @@
 <section class="services-section">
   <div class="services-container">
     <div class="services-list">
-      @for (service of services; track service.number) {
+      @for (service of services; track service.number; let i = $index) {
         <div class="service-card" [class.service-card--reverse]="service.reverse">
           <div class="service-image-wrap">
             <img [ngSrc]="service.image" [alt]="service.title" class="service-image" fill>
             <div class="service-glow"></div>
             <div class="service-glow-inner"></div>
             <i class="ti {{ service.icon }} service-icon-overlay" aria-hidden="true"></i>
-            <!--<span class="service-number">Service {{ service.number }}</span>-->
           </div>
           <div class="service-content" [class.service-content--reverse]="service.reverse">
             <h3 class="service-title">{{ service.title }}</h3>
             <p class="service-desc">{{ service.description }}</p>
-            <div class="service-link">
+            <a routerLink="/contacto" class="service-link" [class.service-link--right]="i % 2 === 0">
+              Contact Us
               <i class="ti ti-arrow-right" aria-hidden="true"></i>
-            </div>
+            </a>
           </div>
         </div>
       }

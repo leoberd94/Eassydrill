@@ -14,38 +14,25 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": [{"glob": "**/*", "input": "public"}],
+            "styles": ["src/styles.css"],
             "server": "src/main.server.ts",
             "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "ssr": {"entry": "src/server.ts"}
           },
           "configurations": {
             "production": {
-              "budgets": [
+              "fileReplacements": [
                 {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
+              ],
+              "budgets": [
+                {"type": "initial", "maximumWarning": "500kB", "maximumError": "1MB"},
+                {"type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB"}
               ],
               "outputHashing": "all"
             },
@@ -60,41 +47,23 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "EASYDRILL:build:production"
-            },
-            "development": {
-              "buildTarget": "EASYDRILL:build:development"
-            }
+            "production": {"buildTarget": "EASYDRILL:build:production"},
+            "development": {"buildTarget": "EASYDRILL:build:development"}
           },
           "defaultConfiguration": "development"
         },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
-        },
+        "extract-i18n": {"builder": "@angular/build:extract-i18n"},
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "assets": [{"glob": "**/*", "input": "public"}],
+            "styles": ["src/styles.css"]
           }
         }
       }
     }
   },
-  "cli": {
-    "analytics": "d9385be5-9357-43ee-a03d-e8db3b6301e4"
-  }
+  "cli": {"analytics": "d9385be5-9357-43ee-a03d-e8db3b6301e4"}
 }

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.services';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+import { AdminManagement } from './admin-management/admin-management';
 
 
 export interface ContactMessage{
@@ -18,9 +20,11 @@ export interface ContactMessage{
   
 }
 
+type DashTab = 'messages' | 'admins';
+
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule,],
+  imports: [CommonModule, AdminManagement],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -29,8 +33,9 @@ export class Dashboard implements OnInit{
   messages: ContactMessage[] = [];
   loading = true;
   adminEmail = '';
+  activeTab: DashTab = 'messages';
 
-  private apiUrl = 'http://localhost:8080/api/admin';
+  private apiUrl = `${environment.apiUrl}/admin`;
   
   constructor(
     private http:HttpClient,
@@ -46,7 +51,7 @@ export class Dashboard implements OnInit{
 
   loadMessages(){
     this.loading = true;
-    this.http.get<ContactMessage[]>('${this.apiUrl}/api/messages').subscribe({
+    this.http.get<ContactMessage[]>(`${this.apiUrl}/messages`).subscribe({
       next:(data)=>{
         this.messages = data;
         this.loading =false
@@ -61,7 +66,7 @@ export class Dashboard implements OnInit{
     
   }
   updateStatus(id:number, status:string){
-     this.http.patch(`${this.apiUrl}/api/messages/${id}/status?status=${status}`, {}).subscribe({
+     this.http.patch(`${this.apiUrl}/messages/${id}/status?status=${status}`, {}).subscribe({
       next:()=>{
         this.loadMessages();
       },

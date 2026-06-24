@@ -1,0 +1,229 @@
+====================================================
+  COMANDOS EASYDRILL - DEPLOY COMPLETO EN HOSTINGER
+====================================================
+
+IP DEL SERVIDOR: 2.25.177.121
+DOMINIO: easydrillsolutions.com
+BD: easydrill_db
+USUARIO BD: easydrill_user
+
+
+----------------------------------------------------
+1. CONEXION AL SERVIDOR
+----------------------------------------------------
+ssh root@2.25.177.121
+
+
+----------------------------------------------------
+2. ACTUALIZACION DEL SERVIDOR
+----------------------------------------------------
+apt update && apt upgrade -y
+
+
+----------------------------------------------------
+3. INSTALACION DE JAVA, MYSQL, NGINX, NODE
+----------------------------------------------------
+apt install openjdk-17-jdk -y
+apt install mysql-server -y
+apt install nginx -y
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt install nodejs -y
+
+
+----------------------------------------------------
+4. CONFIGURACION DE MYSQL
+----------------------------------------------------
+mysql_secure_installation
+# Respuestas: n, y, y, y, y
+
+mysql
+CREATE DATABASE easydrill_db;
+CREATE USER 'easydrill_user'@'localhost' IDENTIFIED BY 'Dios1805i.';
+GRANT ALL PRIVILEGES ON easydrill_db.* TO 'easydrill_user'@'localhost';
+FLUSH PRIVILEGES;
+exit
+
+
+----------------------------------------------------
+5. CONFIGURACION DE NGINX
+----------------------------------------------------
+nano /etc/nginx/sites-available/easydrill
+
+# Contenido del archivo:
+server {
+    listen 443 ssl;
+    server_name easydrillsolutions.com www.easydrillsolutions.com;
+    root /var/www/easydrill/browser;
+    index index.html;
+    ssl_certificate /etc/letsencrypt/live/easydrillsolutions.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/easydrillsolutions.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    location /api {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+server {
+    listen 80;
+    server_name easydrillsolutions.com www.easydrillsolutions.com;
+    return 301 https://$host$request_uri;
+}
+
+ln -s /etc/nginx/sites-available/easydrill /etc/nginx/sites-enabled/
+nginx -t
+systemctl restart nginx
+
+
+----------------------------------------------------
+6. CERTIFICADO SSL (HTTPS)
+----------------------------------------------------
+apt install certbot python3-certbot-nginx -y
+certbot --nginx -d easydrillsolutions.com -d www.easydrillsolutions.com
+
+
+----------------------------------------------------
+7. ARCHIVO .ENV CON VARIABLES DE ENTORNO
+----------------------------------------------------
+cat > /root/.env << 'EOF'
+DB_URL=jdbc:mysql://localhost:3306/easydrill_db
+DB_USER=easydrill_user
+DB_PASS=Dios1805i.
+JWT_SECRET=EasyDrill2024SuperSecretKeyAdminSecurePasswordForJWTGeneration256Bits!!
+EOF
+
+
+----------------------------------------------------
+8. SUBIR BACKEND (SPRING BOOT) - DESDE PC
+----------------------------------------------------
+# En PC - generar JAR:
+cd C:\Users\57322\Desktop\eassydrill\eassydrill
+mvnw package -DskipTests
+
+# Subir JAR al servidor:
+scp target\eassydrill-0.0.1-SNAPSHOT.jar root@2.25.177.121:/root/
+
+
+----------------------------------------------------
+9. CONFIGURAR SPRING BOOT COMO SERVICIO
+----------------------------------------------------
+nano /etc/systemd/system/easydrill.service
+
+# Contenido:
+[Unit]
+Description=EasyDrill Spring Boot App
+After=network.target
+
+[Service]
+User=root
+EnvironmentFile=/root/.env
+ExecStart=/usr/bin/java -jar /root/eassydrill-0.0.1-SNAPSHOT.jar
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+systemctl daemon-reload
+systemctl enable easydrill
+systemctl start easydrill
+systemctl status easydrill
+
+
+----------------------------------------------------
+10. SUBIR FRONTEND (ANGULAR) - DESDE PC
+----------------------------------------------------
+# En PC - generar build de produccion:
+cd C:\Users\57322\Desktop\EASYDRILL
+ng build --configuration=production
+
+# Subir al servidor:
+scp -r dist\EASYDRILL root@2.25.177.121:/var/www/easydrill
+
+# En el servidor - configurar permisos:
+chmod -R 755 /var/www/easydrill
+chown -R www-data:www-data /var/www/easydrill
+cp /var/www/easydrill/browser/index.csr.html /var/www/easydrill/browser/index.html
+systemctl restart nginx
+
+
+----------------------------------------------------
+11. CREAR ADMIN EN LA BASE DE DATOS
+----------------------------------------------------
+# Generar hash de password:
+mkdir /root/bcrypt-tool && cd /root/bcrypt-tool
+npm init -y
+npm install bcryptjs
+node -e "const b = require('bcryptjs'); const h = b.hashSync('TU_PASSWORD', 10); console.log(h.replace('\$2b\$', '\$2a\$'));"
+
+# Registrar admin via API:
+curl -X POST http://localhost:8080/api/auth/register \
+-H "Content-Type: application/json" \
+-d '{"email":"leoberdug@gmail.com","password":"1118557312lb"}'
+
+
+----------------------------------------------------
+12. COMANDOS UTILES DE MANTENIMIENTO
+----------------------------------------------------
+# Ver logs de Spring Boot:
+journalctl -u easydrill -n 50 --no-pager
+
+# Reiniciar servicios:
+systemctl restart easydrill
+systemctl restart nginx
+
+# Matar proceso en puerto 8080:
+kill $(lsof -t -i:8080)
+
+# Ver errores de Nginx:
+cat /var/log/nginx/error.log | tail -20
+
+# Entrar a MySQL:
+mysql -u easydrill_user -p easydrill_db
+
+
+----------------------------------------------------
+13. CUANDO SE ACTUALIZA EL PROYECTO
+----------------------------------------------------
+# Backend - desde PC:
+mvnw package -DskipTests
+scp target\eassydrill-0.0.1-SNAPSHOT.jar root@2.25.177.121:/root/
+# En servidor:
+systemctl restart easydrill
+
+# Frontend - desde PC:
+ng build --configuration=production
+scp -r dist\EASYDRILL root@2.25.177.121:/var/www/easydrill_new
+# En servidor:
+rm -rf /var/www/easydrill/browser
+mv /var/www/easydrill_new/browser /var/www/easydrill/browser
+chmod -R 755 /var/www/easydrill
+chown -R www-data:www-data /var/www/easydrill
+cp /var/www/easydrill/browser/index.csr.html /var/www/easydrill/browser/index.html
+systemctl restart nginx
+
+
+
+
+
+
+
+------------------------------------------------
+EL VERDADERO PARA SUBIR EL FRONT 
+-----------------------------------------------
+EN EL PC
+cd C:\Users\57322\Desktop\EASYDRILL
+ng build --configuration=production
+scp -r dist\EASYDRILL\browser\* root@2.25.177.121:/var/www/easydrill/browser/
+
+
+
+
+EN EL SERVIDOR :ssh root@2.25.177.121
+cp /var/www/easydrill/browser/index.csr.html /var/www/easydrill/browser/index.html
+chmod -R 755 /var/www/easydrill
+chown -R www-data:www-data /var/www/easydrill
+systemctl restart nginx

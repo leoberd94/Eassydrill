@@ -59,6 +59,23 @@
       </div>
     </div>
 
+    <!-- Tabs -->
+    <div class="dash-tabs">
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'messages'"
+        (click)="activeTab = 'messages'">
+        <i class="ti ti-mail" aria-hidden="true"></i> Messages
+      </button>
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'admins'"
+        (click)="activeTab = 'admins'">
+        <i class="ti ti-shield-lock" aria-hidden="true"></i> Admins
+      </button>
+    </div>
+
+    @if (activeTab === 'messages') {
     <!-- Messages -->
     <div class="messages-section">
       <div class="section-header">
@@ -139,5 +156,10 @@
       }
 
     </div>
+    }
+
+    @if (activeTab === 'admins') {
+      <app-admin-management></app-admin-management>
+    }
   </main>
 </div>

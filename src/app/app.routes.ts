@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
-    {
+  {
     path: '',
     loadComponent: () =>
       import('./pages/home/home').then(m => m.Home)
@@ -20,7 +21,7 @@ export const routes: Routes = [
     path: 'about',
     loadComponent: () =>
       import('./pages/about/about').then(m => m.About)
-  }, 
+  },
   {
     path: 'servicios',
     loadComponent: () =>
@@ -36,14 +37,26 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/contacto/contacto').then(m => m.Contacto)
   },
-  {path:'gallery',
-    loadComponent:()=>
-      import('./pages/gallery/gallery').then(m=> m.Gallery)
+  {
+    path: 'gallery',
+    loadComponent: () =>
+      import('./pages/gallery/gallery').then(m => m.Gallery)
   },
-   {
+  {
     path: 'login',
     loadComponent: () =>
       import('./login/login').then(m => m.Login)
   },
 
+  // 👇 Agrega esto
+  {
+    path: 'admin/dashboard',
+    loadComponent: () =>
+      import('./dashboard/dashboard').then(m => m.Dashboard),
+    canActivate: [authGuard]
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];

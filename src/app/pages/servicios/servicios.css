@@ -2,7 +2,6 @@
    PAGE BANNER (solo /servicios)
 =========================== */
 
-
 .about {
   background: #ffffff;
   padding: 40px 40px;
@@ -44,7 +43,7 @@
 .services-page-header {
   position: relative;
   background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-  padding: 105px 20px 45px; /* Más compacto, considerando la navbar fixed de 68px */
+  padding: 105px 20px 45px;
   text-align: center;
   color: #fff;
   overflow: hidden;
@@ -66,7 +65,7 @@
 }
 
 .services-page-content h1 {
-  font-size: 2.2rem; /* Tamaño más refinado y proporcional, antes era 3.5rem */
+  font-size: 2.2rem;
   font-family: var(--font-brand);
   font-weight: 800;
   letter-spacing: 1.5px;
@@ -75,7 +74,7 @@
 }
 
 .services-page-content p {
-  font-size: 1rem; /* Más sutil, antes era 1.2rem */
+  font-size: 1rem;
   font-family: var(--font-body);
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.5px;
@@ -247,20 +246,33 @@
   font-family: var(--font-body);
 }
 
+/* --- Botón derecha (solo desktop) --- */
+.service-link--right {
+  align-self: flex-end;
+}
+
+/* --- Botón Contact Us --- */
 .service-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: var(--color-primary);
+  gap: 8px;
+  background: var(--color-primary);
+  color: #ffffff;
   font-size: 13px;
   font-weight: 700;
   font-family: var(--font-body);
+  padding: 10px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: gap 0.2s ease;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  width: fit-content;
 }
 
 .service-link:hover {
-  gap: 10px;
+  background: var(--color-primary-dark);
+  gap: 12px;
+  transform: translateX(3px);
 }
 
 .service-link i {
@@ -285,7 +297,9 @@
    TABLET (max 768px)
 =========================== */
 @media (max-width: 768px) {
-  
+  .service-link--right {
+    align-self: flex-start;
+  }
   .services-section {
     padding: 3.5rem 0;
   }
@@ -310,7 +324,8 @@
   .services-title {
     font-size: 1.6rem;
   }
-    .service-card--reverse {
+
+  .service-card--reverse {
     flex-direction: column !important;
   }
 
@@ -344,6 +359,7 @@
   .service-desc {
     font-size: 13px;
   }
+
   .service-card--reverse {
     flex-direction: column !important;
   }
@@ -354,6 +370,7 @@
     border-top: 3px solid var(--color-primary) !important;
   }
 }
+
 .service-card--reverse {
   flex-direction: row-reverse;
 }

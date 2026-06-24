@@ -14,9 +14,11 @@ export class Footer {
 
   social = {
     instagram: 'https://instagram.com/easydrillsolutions',
-    facebook: 'https://facebook.com/easydrillsolutions'
+    facebook: 'https://www.facebook.com/people/EasyDrill-Solutions/61590301087941/'
   };
 
-  email = 'info@easydrillsolutions.com';
+  email = 'Admin@easydrillsolutions.com';
+  phone = '+12393830394';
+  phoneDisplay = '+1 (239) 383-0394';
 
 }
